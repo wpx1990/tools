@@ -5,7 +5,7 @@ docker build -f ./Dockerfile -t ubuntu:20.04-ssh ./
 
 #### 在docker上运行
 ```
-docker run -d -p 10022:22 ubuntu:20.04-ssh
+docker run -d -p 10022:2222 ubuntu:20.04-ssh
 ```
 
 #### 在K8S上运行
@@ -22,7 +22,7 @@ spec:
     image: 10.15.42.160:5000/ubuntu:20.04-ssh
     imagePullPolicy: IfNotPresent
     ports:
-    - containerPort: 22
+    - containerPort: 2222
       protocol: TCP
   nodeName: master1
 ---
@@ -34,8 +34,8 @@ metadata:
   name: test-ssh
 spec:
   ports:
-  - port: 22
-    targetPort: 22
+  - port: 2222
+    targetPort: 2222
     protocol: TCP
     nodePort: 32022
   selector:

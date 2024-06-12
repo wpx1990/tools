@@ -1,12 +1,13 @@
 #! /bin/bash
 
-VERSION=ubuntu:20.04-ssh
+VERSION=cpu-latest-addpause
 
 IMAGE_NAME=algorithm_base:$VERSION
 IMAGE_NAME_LINUX_AMD64=$IMAGE_NAME-linux-amd64
 IMAGE_NAME_LINUX_ARM64V8=$IMAGE_NAME-linux-arm64v8
 
-HARBOR_ADDR=tj.inner1.harbor.com/tools/
+HARBOR_ADDR=tj.inner1.harbor.com/algorithms/
+
 DOCKERFILE=Dockerfile
 
 # linux amd64镜像制作
@@ -28,9 +29,6 @@ docker manifest annotate $HARBOR_ADDR$IMAGE_NAME $HARBOR_ADDR$IMAGE_NAME_LINUX_A
 
 # 推送manifest列表到镜像仓库
 docker manifest push $HARBOR_ADDR$IMAGE_NAME --purge
-
-# docker rmi $HARBOR_ADDR$IMAGE_NAME_LINUX_AMD64
-# docker rmi $HARBOR_ADDR$IMAGE_NAME_LINUX_ARM64V8
 
 # 删除dangling镜像
 echo y | docker image prune
