@@ -1,8 +1,6 @@
 #! /bin/bash
 
-VERSION=ubuntu:20.04-ssh
-
-IMAGE_NAME=algorithm_base:$VERSION
+IMAGE_NAME=ubuntu:20.04-ssh
 IMAGE_NAME_LINUX_AMD64=$IMAGE_NAME-linux-amd64
 IMAGE_NAME_LINUX_ARM64V8=$IMAGE_NAME-linux-arm64v8
 
