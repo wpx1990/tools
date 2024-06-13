@@ -1,6 +1,6 @@
 #### 制作镜像
 ```
-docker build -f ./Dockerfile -t ubuntu:20.04-ssh ./
+sh buildandpush.sh
 ```
 
 #### 在docker上运行
@@ -24,7 +24,8 @@ spec:
     ports:
     - containerPort: 2222
       protocol: TCP
-  nodeName: master1
+  nodeSelector:
+    kubernetes.io/hostname: k8s-edge
 ---
 apiVersion: v1
 kind: Service
