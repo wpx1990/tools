@@ -1,18 +1,19 @@
-#设置继承镜像
-FROM ubuntu:20.04
+ARG base_image=ubuntu:20.04
+FROM $base_image
 
-RUN apt-get update
+RUN apt update
 
+RUN apt install -y dnsutils
 RUN apt install -y tcpdump
 RUN apt install -y net-tools
 RUN apt install -y telnet
 RUN apt install -y iputils-ping
 RUN apt install -y vim
-RUN apt install -y mlocate && updatedb
 RUN apt install -y lrzsz
 RUN apt install -y procps
 RUN apt install -y iptables
 RUN apt install -y build-essential
+RUN apt install -y mlocate && updatedb
 
 #安装ssh服务
 RUN apt-get install -y openssh-server
