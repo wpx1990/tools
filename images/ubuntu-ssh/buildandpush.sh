@@ -19,14 +19,14 @@ docker push $HARBOR_ADDR$IMAGE_NAME_LINUX_ARM64V8
 # 创建manifest列表
 docker manifest create $HARBOR_ADDR$IMAGE_NAME \
   $HARBOR_ADDR$IMAGE_NAME_LINUX_AMD64 \
-  $HARBOR_ADDR$IMAGE_NAME_LINUX_ARM64V8
+  $HARBOR_ADDR$IMAGE_NAME_LINUX_ARM64V8 --insecure
 
 # 设置manifest列表
 docker manifest annotate $HARBOR_ADDR$IMAGE_NAME $HARBOR_ADDR$IMAGE_NAME_LINUX_AMD64 --os linux --arch amd64
 docker manifest annotate $HARBOR_ADDR$IMAGE_NAME $HARBOR_ADDR$IMAGE_NAME_LINUX_ARM64V8 --os linux --arch arm64 --variant v8
 
 # 推送manifest列表到镜像仓库
-docker manifest push $HARBOR_ADDR$IMAGE_NAME --purge
+docker manifest push $HARBOR_ADDR$IMAGE_NAME --purge --insecure
 
 # docker rmi $HARBOR_ADDR$IMAGE_NAME_LINUX_AMD64
 # docker rmi $HARBOR_ADDR$IMAGE_NAME_LINUX_ARM64V8
